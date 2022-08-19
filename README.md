@@ -33,11 +33,11 @@ etc.
 I also used this for for finding all possible boards after one legal move.
 
 We have the function:
-```setSquare :: Board -> Square -> Coordinates -> Board```
+```setSquare :: Board -> Square -> Coordinate -> Board```
 
-Instead of using one ```Square``` and one ```Coordinates```, I instead supply ```[Square]``` and ```[Coordinates]```, giving me all possible combinations.
+Instead of using one ```Square``` and one ```Coordinate```, I instead supply ```[Square]``` and ```[Coordinate]```, giving me all possible combinations.
 
-Here, ```[Square]``` is all possible Squares (1-9). ```[Coordinates]``` is all empty squares.
+Here, ```[Square]``` is all possible Squares (1-9). ```[Coordinate]``` is all empty squares.
 
 Finally I get rid of the illegal boards, and remove duplicates (to speed up the solver).
 
