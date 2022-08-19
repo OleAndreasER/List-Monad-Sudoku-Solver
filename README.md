@@ -1,6 +1,6 @@
 List Monad Sudoku Solver 
 ========================
-The list monad (and applicative) can be used for non-deterministic computations. I wanted to use this to make a sudoku solver. It is not the most efficient probably, but that wasn't the point.
+The list monad (and applicative) can be used for non-deterministic computations. I wanted to use this to make a sudoku solver. It is not the most efficient probably, but that is not the point.
 
 The program just prints to console. You can find the output in output.txt.
 
@@ -20,13 +20,13 @@ Then we can apply this function to all these boards again and again until we hav
 
 It looks like this:
 ```
-[Board]
-   |                                 =<< solveStep
+[Board]                             >>= solveStep
+   | 
    v------v------v
-[Board, Board, Board]
-   |             |                   =<< solveStep
+[Board, Board, Board]               >>= solveStep
+   |             | 
    v             v------v------v
-[Board,        Board, Board, Board]
+[Board,        Board, Board, Board] >>= solveStep
 etc.
 ```
 
