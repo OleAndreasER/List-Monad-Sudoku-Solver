@@ -37,11 +37,11 @@ We have the function:
 
 Instead of using one ```Square``` and one ```Coordinate```, I instead supply ```[Square]``` and ```[Coordinate]```, giving me all possible combinations.
 
-Here, ```[Square]``` is all possible Squares (1-9). ```[Coordinate]``` is all empty squares.
+Here, ```[Square]``` is all possible Squares (1-9). ```[Coordinate]``` is all the empty squares.
 
 Finally I get rid of the illegal boards, and remove duplicates (to speed up the solver).
 
-This uses list as an applicative.
+This function uses list as an applicative.
 
 ```
 solveStep :: Board -> [Board]
