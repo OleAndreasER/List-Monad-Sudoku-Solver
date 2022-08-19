@@ -51,7 +51,7 @@ solveStep board =
     $ legalBoards
     =<< setSquare board
     <$> squares
-    <*> emptyCoords board
+    <*> emptyCoordinates board
 
 iterateUntil :: Monad m => (a -> Bool) -> (a -> m a) -> m a -> m a
 iterateUntil pred f x = do
@@ -96,12 +96,12 @@ isLegalSquares squares =
     $ digitToInt
     <$> filter (/= '0') squares
 
-type Coord = (Integer, Integer)
+type Coordinate = (Integer, Integer)
 
-squareAtCoord :: Coord -> Board -> Square
-squareAtCoord (row,square) board = board !! fromIntegral row !! fromIntegral square 
+squareAtCoordinate :: Coordinate -> Board -> Square
+squareAtCoordinate (row,square) board = board !! fromIntegral row !! fromIntegral square 
 
-setSquare :: Board -> Square -> Coord -> Board
+setSquare :: Board -> Square -> Coordinate -> Board
 setSquare board c (row,square) =
     setAt (fromIntegral row) newRow board
   where
@@ -111,8 +111,8 @@ setAt :: Int -> a -> [a] -> [a]
 setAt i x xs = left ++ [x] ++ right
     where (left, _ : right) = splitAt i xs
 
-emptyCoords :: Board -> [Coord]
-emptyCoords board =
+emptyCoordinates :: Board -> [Coordinate]
+emptyCoordinates board =
     [ (n,m)
     | (n, squares) <- enumerateBoard board
     , (m, square)  <- squares
