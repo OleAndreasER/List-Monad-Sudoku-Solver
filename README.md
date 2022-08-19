@@ -50,5 +50,5 @@ solveStep board =
     $ legalBoards
     =<< setSquare board
     <$> squares
-    <*> emptyCoords board
+    <*> emptyCoordinates board
 ```
