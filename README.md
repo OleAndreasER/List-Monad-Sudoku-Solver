@@ -1,6 +1,6 @@
 List Monad Sudoku Solver 
 ========================
-The list monad (and applicative) can be used for non-deterministic computations. I wanted to use this to make a sudoku solver. It is not the most efficient probably, but that is not the point.
+The list monad (and applicative) can be used for non-deterministic computations. I wanted to use this to make a sudoku solver.
 
 The program just prints to console. You can find the output in output.txt.
 
@@ -12,13 +12,17 @@ With list as a monad, we can apply these ```a -> [b]``` functions to ```[a]```. 
 
 This sudoku solver starts with a list of only one Board: The original ```[Board]```.
 
-We have a function ```solveStep :: Board -> [Board]```. This returns all possible boards after one legal move.
+We have a function ```solveStep :: Board -> [Board]```. This returns all possible board states after one legal move.
 
-Then we can apply this function to all these boards again and again until we have a solved board.
+Then we can apply this function to all these boards again and again, branching into all candidate board states, until we have one that is solved.
 
-```[Board] -> [Board] -> [Board] -> etc.```
+```
+Board -> [Board]
+          Board -> [Board]
+                    Board -> [Board]
+```
 
-It looks like this:
+It will branch like this:
 ```
 [Board]                             >>= solveStep
    | 
@@ -30,18 +34,16 @@ It looks like this:
 etc.
 ```
 
-I also used this for for finding all possible boards after one legal move.
+I used list as an applicative for finding all possible boards after one legal move.
 
 We have the function:
 ```setSquare :: Board -> Square -> Coordinate -> Board```
 
 Instead of using one ```Square``` and one ```Coordinate```, I instead supply ```[Square]``` and ```[Coordinate]```, giving me all possible combinations.
 
-Here, ```[Square]``` is all possible squares (1-9). ```[Coordinate]``` is all the empty squares.
+Here, the ```[Square]``` is all the sudoku digits (1-9). ```[Coordinate]``` is all the empty squares on the board.
 
 Finally I get rid of the illegal boards, and remove duplicates (to speed up the solver).
-
-This function uses list as an applicative.
 
 ```
 solveStep :: Board -> [Board]
